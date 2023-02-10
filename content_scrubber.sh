@@ -7,6 +7,13 @@ if [$1 == ""];then
 fi
 COMMAND=$1
 
+# Quick sanity check.
+echo -en "Are you sure you want to clear content data? Do you have a backup? [Y/N]"
+read -r ANSWER
+if [[ "$ANSWER" != "Y" ]]; then
+  exit 1
+fi
+
 # All of the tables to scrub, change these based on your site.
 TABLES=("crop" "crop_field_data" "crop_field_revision" "entity_usage" "file_managed" "media" "media_field_data" "media_revision" "node" "node_field_data" "node_revision" "node_field_revision" "paragraphs_item" "paragraphs_item_field_data" "paragraphs_item_revision" "paragraphs_item_revision_field_data" "paragraphs_library_item" "paragraphs_library_item_field_data" "paragraphs_library_item_revision" "paragraphs_library_item_field_revision_data" "queue" "batch" "redirect" "search_api_item" "search_api_task" "taxonomy_term_data" "taxonomy_term_field_data" "taxonomy_term_revision" "taxonomy_term_field_revision" "taxonomy_term__parent" "taxonomy_index")
 
